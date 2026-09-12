@@ -1,0 +1,17 @@
+name: asset-metadata-service
+
+services:
+  metadata:
+    build: .
+    image: ${METADATA_IMAGE:-asset-metadata-service:local}
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${METADATA_PORT:-8080}:8080"
+    environment:
+      METADATA_CONTRACT_VERSION: metadata-contract-v0.1
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/healthz')"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+    read_only: true

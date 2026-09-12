@@ -11,3 +11,6 @@ jobs:
       - run: pip install pytest
       - run: python -m pytest
       - run: python -m json.tool schemas/metadata-result.schema.json >/dev/null
+      - run: python -m py_compile src/*.py
+      - run: python -m pip install fastapi uvicorn httpx2
+      - run: python -c "from fastapi.testclient import TestClient; from src.api import app; r=TestClient(app).get('/healthz'); assert r.status_code == 200"

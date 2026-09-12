@@ -24,3 +24,8 @@ The actual adapters may use ImageMagick/Sharp for images and `ffprobe` for
 videos. Adapter failures must be retried or reported; fields must not be
 silently guessed. The JSON contract is in
 `schemas/metadata-result.schema.json`.
+
+Every result is associated with a Directus `asset_id`, an
+`extractor_version`, and an ISO-8601 `extracted_at` timestamp. A later
+re-extraction creates a new deterministic result; business users do not edit
+these values in the review UI.

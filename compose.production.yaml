@@ -1,0 +1,5 @@
+# production 覆盖层：与 compose.yaml 叠加使用
+#   docker compose --env-file .env.runtime -f compose.yaml -f compose.production.yaml up -d --build
+#
+# 与 staging 的差异仅限 project name；共享网络由 SHARED_NETWORK 控制。
+name: asset-metadata-service-production

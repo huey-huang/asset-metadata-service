@@ -19,8 +19,10 @@ services:
       - /tmp:size=1024m
     networks:
       - default
-      - staging-shared
+      - shared
 
 networks:
-  staging-shared:
+  # 共享网络的实际名称由 SHARED_NETWORK 决定：staging-shared / production-shared
+  shared:
+    name: ${SHARED_NETWORK:-staging-shared}
     external: true
